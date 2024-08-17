@@ -1,0 +1,70 @@
+Problem Description
+Given an array of integers as input, output the indices of two numbers in the array which add up to a specified target.
+
+Assume that each input would have exactly one solution and you cannot use the same element twice. If 2 different elements have the same value, they can be used.
+
+Print the indices in increasing order.
+
+Input format
+First line contains an Integer N that represents the number of elements in the array.
+
+Second line contains N space separated integers, which are members of the array.
+
+Third line contains an integer X, which is the target value.
+
+Output format
+Print two space separated indices(in increasing order) of the numbers which add up to the specified target.
+
+Constraints
+2 <= Length of array <= 100000
+
+1 <= Range of values <= 1000000
+
+Sample Input 1
+5 --> Number of elements in array
+
+2 4 5 9 8 --> Array elements
+
+7 --> Target sum value
+
+Sample Output 1
+0 2
+
+Explanation 1
+Since 0 and 2 are the indices where the numbers 2 and 5 which add up to 7 are seen
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+-----------------------
+Brute Force Approach :
+-----------------------
+
+The simplest approach would be to maintain two pointers. The first traverses through the array, and the second checks every element following the first in the array, if they sum up to x.
+
+If a match is found, it returns true.
+
+If the first pointer reaches N, it returns false.
+
+The TC of this approach would be O(N^2), since there’d be a nested for loop for the second pointer.
+
+
+---------------------
+Optimized Approach :
+---------------------
+A simple implementation uses two iterations. In the first iteration, we add each element's value as a key and its index as a value to the hash table.
+
+Then, in the second iteration, we check if each element's complement (
+
+target−nums[i]) exists in the hash table.
+
+If it does exist, we return the current element's index and its complement's index. Beware that the complement must not be nums[i] itself.
+
+
+--------------------------------------
+Time Complexity and Space Complexity:
+--------------------------------------
+As the lookup in the hash table is O(1) and we traverse through the array once. Thus the TC is O(N).
+As we use a hashmap the SC is O(N).
+When compared to approach 2, though this uses additional space, it's time complexity is optimised.
+Thus it's a time-space tradeoff.

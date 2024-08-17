@@ -1,0 +1,89 @@
+Problem Description
+Given an array *nums*, find all unique triplets (group of 3 numbers) such that their sum is 0. There should be no duplicates i.e. no triplet should be repeated.
+
+Input format
+The first line consists of an integer, N, denoting the size of the array.
+
+The second line consists of N space separated integers which denote the elements of the array, nums.
+
+Output format
+You must return all such unique triplets which sum to 0 from the given array.
+
+Constraints
+0 <= N <= 10^3
+
+0 <= | nums[i] | <= 10^6, where nums[i] represents the value of each element in the array
+
+Sample Input 1
+6
+
+-1 0 1 2 -1 -4
+
+Sample Output 1
+-1 0 1
+
+-1 -1 2
+
+Explanation 1
+These 2 triplets sum to 0 and there are no other such unique combinations. Note that the combination [-1 , 0, 1] can be created twice but is not repeated since we are only displaying unique combinations.
+
+Sample Input 2
+7
+
+-3 0 1 2 -1 1 -2
+
+Sample Output 2
+-3 1 2
+
+-2 0 2
+
+-2 1 1
+
+-1 0 1
+
+Explanation 2
+These are the 4 triplets that sum to 0 and there are no other such unique combinations.
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+Approach 1 : Brute Force Method
+
+Initialize an empty set to store the triplets.
+
+Iterate over all possible combinations of three numbers from the given list.
+
+Check if the sum of the three numbers is zero.
+
+If the sum is zero and the triplet is not already in the set, add it to the set.
+
+Return the set of unique triplets
+
+
+Approach 2 : Two Pointers
+
+Begin by sorting the input array.
+
+Create a set to store the unique triplets and an output vector to hold the final result.
+
+Iterate through the array using a variable i, starting from index 0.
+
+Set up two pointers, j and k, where j starts at i+1 and k starts at the end of the array.
+
+Within a while loop, check if the sum of nums[i], nums[j], and nums[k] equals 0. If it does, insert the triplet into the set, and increment j while decrementing k to move the pointers.
+
+If the sum is less than 0, increment j. If the sum is greater than 0, decrement k.
+
+Once the while loop ends, iterate through the set and add each triplet to the output vector.
+
+Finally, return the output vector as the desired result.
+
+
+--------------------------------------
+Time Complexity and Space Complexity:
+--------------------------------------
+The time complexity of the algorithm is O(n^2 log n), where n represents the size of the array.
+This is because sorting the array takes O(n log n) time, and the loop that checks the combinations takes O(n^2) time.
+Therefore, the overall time complexity is O(n log n + n^2 log n) - O(n^2 log n).
+
+The space complexity is O(n) as it requires space for the hash set used to store the triplets.
