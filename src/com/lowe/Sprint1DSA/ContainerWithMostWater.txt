@@ -1,0 +1,98 @@
+-----------------------
+Problem Description :
+-----------------------
+You are given an array of N non-negative integers where each represents the height of a line.
+N vertical lines are drawn at points marked 1 to n on the x axis as shown in the diagram.
+Find two lines, which together with the x axis forms a container, such that the container holds the most water.
+Assume the width of lines to be negligible.
+
+Note: You may not slant the container and n is at least 2.
+
+--------------
+Input format:
+--------------
+The first line consists of an integer, N, denoting the size of the array.
+
+The second line consists of N space separated integers which denote the elements of the array,
+
+----------------
+Output format :
+----------------
+Single integer denoting the capacity of the largest container.
+
+Constraints
+2 <= N <= 10^6
+
+Sample Input 1
+9
+
+1 8 6 2 5 4 8 3 7
+
+Sample Output 1
+49
+
+------------------
+Explanation 1 :
+------------------
+The lines of length 8 and 7 form a container that can hold 7*7=49 units of water.
+Here, the first 7 is the minimum of the two line heights and the second 7 is the number of units they are apart.
+This is the largest container that can be formed with the given input.
+
+
+----------------------
+Solution :
+----------------------
+
+What is the brute force approach?
+
+Simply, for each pair of heights we will compute the container with the most water.
+
+Brute force solution to this problem is to calculate the area of water contained when selecting a pair of the heights from the input array.
+The maximum area of water will be obtained from the maximum of the areas formed by every pair of heights in the input array.
+
+Solution Steps
+
+For every index i and j of the height input array, calculate (j-i) * min(height[j], height[i]) and store it in a temporary variable
+
+Update the result with the maximum of the result and calculated value.
+
+TC is O(N^2) as we are calculating area for all pairs of height. So, n*(n-1)/2 operations.
+SC is O(1) constant extra space is used.
+
+Have you given the brute force some thought?
+
+Why are we considering every pair of heights?
+
+For calculating area, why are we considering the minimum of height[i] and height[j]?
+
+
+
+Can you think of a better approach?
+
+How can the above approach be improved?
+
+By using two pointer approach
+
+The intuition behind this approach is that the area formed between the lines will always be limited by the height of the shorter line. Further, Increasing the distance between the lines will increase the area.
+
+Take two pointers, one at the beginning and one at the end of the input height array and maintain a variable maxarea to store the maximum area obtained till now. At every step, we find out the area formed between the values at the two pointers, update maxarea and move the pointer pointing to the shorter line towards the other end by one step.
+
+
+
+Solution steps
+
+Use two pointers leftIndex and rightIndex initialized at 0 and n-1
+
+Now compute the area implied by these pointers as (leftIndex-rightIndex)*min(height[leftIndex], height[rightIndex])
+
+if height[leftIndex] < height[rightIndex]then, increment leftIndex by 1 else, decrement rightIndex by 1
+
+
+
+What is the TC/SC of the above approach?
+
+We’re using only a single traversal by moving either the left pointer, or the right pointer.
+
+Thus, the TC will be O(N)
+
+The SC will be O(1) since we aren’t using any additional data structure
